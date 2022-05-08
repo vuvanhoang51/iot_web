@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UI_IOT</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
+    <link rel="stylesheet" href="./assets/css/base.css">
+    <link rel="stylesheet" href="./assets/css/main.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./assets/css/font/fontawesome-free-6.1.0-web/css/all.min.css">
+
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-analytics.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-circle-progress/1.2.2/circle-progress.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body  onload="startDay(),startTime()" >
+    <div class="app">
+
+        <!-- The header -->
+        <header class="header">
+            <div class="grid wide">
+                <div class="header__navbar">
+                    <div class="header__navbar--logo">
+                        <a href="" class="header__navbar--logo-link">
+                            <img src="./assets/css/img/UET-removebg.png" alt="" class="header__navbar--logo-uet hile-on-mobile">
+                        </a>
+                    </div>
+                    <div class="header__navbar--title">
+                        <h1 class="header__navbar--title-vnu">ĐẠI HỌC QUỐC GIA HÀ NỘI</h1>
+                        <h2 class="header__navbar--title-uet">TRƯỜNG ĐẠI HỌC CÔNG NGHỆ</h2>
+                    </div>
+                    <div class="header__navbar--login">
+                        <ul class="header__navbar-list hile-on-tablet ">
+                            <li class="header__navbar-item header__notify-item--has-notify">
+                                <button href="" class="btn-bell header__navbar-item--link">
+                                    <i class="fa-solid fa-bell"></i>
+                                    <span class="header__navar-notice">0</span>
+                                    Thông báo
+                                </button>
+                                <div class="header__notify">
+                                    <header class="header__notify-header">
+                                        <h3 class="header__notify-title">Thông báo mới nhất</h3>
+                                    </header>
+
+                                    <ul class="header__notify-list">
+
+                                    </ul>
+                                    
+                                    <footer class="header__notify-footer">
+                                        <div class="header__notify-footer--btn">Xem tất cả</div>
+                                    </footer>
+
+                                </div>
+                            </li>
+                            <li class="header__navbar-item header__help-item--has-help">
+                                <button href="" class="header__navbar-item--link">
+                                    <i class="fa-solid fa-circle-question"></i>
+                                    Trợ giúp
+                                </button>
+                                <div class="header__help">
+                                    <header class="header__help-header">
+                                        <h3 class="header__help-title">Vấn đề cần trợ giúp</h3>
+                                    </header>
+
+                                    <ul class="header__help-list header__help-item--viewed">
+                                        <li class="header__help-item header__help-item--viewed">
+                                            <div class="header__help-phone">
+                                                <i class="fa-thin fa-house-chimney-medical header__help-icon"></i>
+                                                <span class="header__help-number">114</span>
+                                            </div>
+                                            <div class="header__help-info">Cứu hỏa</div>
+                                        </li>
+                                        <li class="header__help-item header__help-item--viewed">
+                                            <div class="header__help-phone">
+                                                <i class="fa-thin fa-house-chimney-medical header__help-icon"></i>
+                                                <span class="header__help-number">115</span>
+                                            </div>
+                                            <div class="header__help-info">Cấp cứu</div>
+                                        </li>
+                                        <li class="header__help-item header__help-item--viewed">
+                                            <div class="header__help-phone">
+                                                <i class="fa-thin fa-house-chimney-medical header__help-icon"></i>
+                                                <span class="header__help-number">19006769</span>
+                                            </div>
+                                            <div class="header__help-info">Tổng đài điện lực Việt Nam</div>
+                                        </li>
+                                    </ul>
+
+                                </div>
+                            </li>
+                            <li class="header__navbar-item hile-on-mobile">
+                                <button class="header__navbar-item--link btn__signup">
+                                    <i class="fa-solid fa-user-plus"></i>
+                                    Đăng kí
+                                </button>
+                            </li>
+                            <li class="header__navbar-item hile-on-mobile">
+                                <button class="header__navbar-item--link btn__signin">
+                                    <i class="fa-solid fa-arrow-right-to-bracket"></i>
+                                    Đăng nhập
+                                </button>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="menu_mobile">
+                        <button class="btn_mobile">
+                            <i class="fa-solid fa-bars"></i>
+                        </button>
+                    </div>
+                </div>
+    
+                <div class="header__menu hile-on-mobile">
+                    <ul class="header__menu-list ">
+                        <li class="header__menu-item">
+                            <a href="" class="header__menu-item--link">DÒNG ĐIỆN</a>
+                        </li>
+                        <li class="header__menu-item">
+                            <a href="" class="header__menu-item--link">ĐIỆN ÁP</a>
+                        </li>
+                        <li class="header__menu-item">
+                            <a href="" class="header__menu-item--link">CÔNG SUẤT</a>
+                        </li>
+                        <li class="header__menu-item">
+                            <a href="" class="header__menu-item--link">ĐIỆN NĂNG</a>
+                        </li>
+                        <li class="header__menu-item">
+                            <a href="" class="header__menu-item--link">CHI PHÍ</a>
+                        </li>
+                    </ul>
+                </div>
+            </div> 
+        </header>
+        <!-- The container -->
+        <div class="container">
+            <div class="grid wide">
+                <div class="row">
+                    <div class="grid__column-5 m-5 l-5 c-12">
+                        <div class="contegory">
+                            <!-- circle dòng điện, điện áp -->
+                            <div class="wrapper">
+                                <div class="wrapper__ampe">
+                                    <div class="wrapper__cicrle">
+                                        <div class="wrapper__bar_ampe"></div>
+                                        <div class="wrapper__box"><span></span></div>
+                                    </div>
+                                    <div class="wrapper__text">Dòng điện</div>
+                                </div>
+    
+                                <div class="wrapper__voltage">
+                                    <div class="wrapper__cicrle">
+                                        <div class="wrapper__bar_volt"></div>
+                                        <div class="wrapper__box"><span class="wrapper__box-value"></span></div>
+                                    </div>
+                                    <div class="wrapper__text">Điện áp</div>
+                                </div>
+                            </div>
+                            <!-- Công suất, điện năng, thành tiền -->
+                            <div class="wrapper__footer">
+                                <ul class="wrapper__list">
+                                    <li class="wrapper__item">
+                                        <span class="wrapper_text">Công suất</span>
+                                        <span class="wrapper__power_value"></span>
+                                    </li>
+                                    <li class="wrapper__item">
+                                        <span class="wrapper_text">Chỉ số hôm nay </span>
+                                        <span class="wrapper__Engery_day"></span>
+                                        
+                                      
+                                    </li>
+                                    <li class="wrapper__item">
+                                        <span class="wrapper_text wrapper__old">Chỉ số hôm qua</span>
+                                        <span class="wrapper__Engery_Old"></span>
+                                         
+                                    </li>
+                                </ul>
+
+                                <ul class="wrapper__list">
+                                    <li class="wrapper__item">
+                                        <span class="wrapper_text">Chỉ số tháng này</span>
+                                        <span class="wrapper__Energy_Month"></span>
+                                    </li>
+                                    <li class="wrapper__item">
+                                        <span class="wrapper_text">Chỉ số tháng trước</span>
+                                        <span class="wrapper__Energy_Month-Old"></span>
+                                        
+                                      
+                                    </li>
+                                    <li class="wrapper__item">
+                                        <span class="wrapper_text">Thành tiền</span>
+                                        <span class="wrapper__Engery_money"></span>
+                                        
+                                       
+                                    </li>
+                                </ul>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="grid__column-7 m-7 l-7 c-12">
+                        <div class="displays">
+                            <div class="displays__header">
+                                <div class="displays__header-power">
+                                    <button class="btn_On_Off" > 
+                                        <i class="fa-solid fa-power-off"></i>
+                                    </button>
+                                </div>
+                                <div class="displays__header-date">
+                                    <i class="fa-solid fa-calendar-days"></i>
+                                    <span class="displays__header-date--text"></span>
+                                </div>
+                                <div class="displays__header-time">
+                                    <i class="fa-solid fa-clock-rotate-left"></i>
+                                    <span class="displays__header-time--text"></span>
+                                </div>
+                            </div>
+
+                            <div class="displays__chart">
+                                <canvas id="myChart"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- The footer -->
+        <footer class="footer">
+            <div class="grid wide">
+                <div class="row">
+                    <div class="grid__column-4-4 l-3 c-12 ">
+                        <div class="footer__bock">
+                            <h3 class="footer__heading">ĐẠI HỌC QUỐC GIA HÀ NỘI</h3>
+                            <ul class="footer__list">
+                                <li class="footer__item">
+                                    <span class="footer__item-text">Trường Đại Học Công Nghệ</span>
+                                </li>
+                                <li class="footer__item">
+                                    <i class="footer__item-icon fa-solid fa-house"></i>
+                                    <span class="footer__item-text">E3, 144 Xuân Thùy, Cầu Giấy, Hà Nội</span>
+                                </li>
+                                <li class="footer__item">
+                                    <i class="footer__item-icon fa-solid fa-envelope"></i>
+                                    <span class="footer__item-text">uet@vnu.edu.vn</span>
+                                </li>
+                            </ul>
+
+                        </div>
+                    </div>
+                    <div class="grid__column-4-4 l-3 c-12">
+                        <div class="footer__bock">
+                            <h3 class="footer__heading">ĐỀ TÀI</h3>
+                            <ul class="footer__list">
+                                <li class="footer__item">
+                                    <span class="footer__item-text">Tên đề tài: Ứng dụng IoT xây dựng hệ thống giám sát mức tiêu thụ điện năng</span>
+                                </li>
+                                <li class="footer__item">
+                                    <span class="footer__item-text">Giảng viên hướng dẫn: TS. Trần Cường Hưng</span>
+                                </li>
+                            </ul>
+
+                        </div>
+                    </div>
+                    <div class="grid__column-4-4 l-3 c-12">
+                        <div class="footer__bock">
+                            <h3 class="footer__heading">SINH VIÊN THỰC HIỆN</h3>
+                            <ul class="footer__list">
+                                <li class="footer__item">
+                                    <span class="footer__item-text">Họ và tên: Vũ Văn Hoàng</span>
+                                </li>
+                                <li class="footer__item">
+                                    <span class="footer__item-text">Mã sinh viên: 18020567</span>
+                                </li>
+                                <li class="footer__item">
+                                    <span class="footer__item-text">Chuyên ngành: Công nghệ kỹ thuật cơ điện tử</span>
+                                </li>
+                            </ul>
+
+                        </div>
+                    </div>
+                    <div class="grid__column-4-4 l-3 c-12">
+                        <div class="footer__bock">
+                            <h3 class="footer__heading">THÔNG TIN LIÊN HỆ</h3>
+                            <ul class="footer__list">
+                                <li class="footer__item">
+                                    <i class="footer__item-icon fa-solid fa-house"></i>
+                                    <span class="footer__item-text">51, ngõ 99, Cầu Diễn, Bắc Từ Liêm, Hà Nội</span>
+                                </li>
+                                <li class="footer__item">
+                                    <i class="footer__item-icon fa-solid fa-phone"></i>
+                                    <span class="footer__item-text">0377618940</span>
+                                </li>
+                                <li class="footer__item">
+                                    <i class="footer__item-icon fa-solid fa-envelope"></i>
+                                    <span class="footer__item-text">vuvanhoanguet51@gmail.com</span>
+                                </li>
+                                <li class="footer__item">
+                                    <a href="https://www.facebook.com/Hoang5120" class="footer__item-link">
+                                        <i class="footer__item-icon fa-brands fa-facebook-square"></i>
+                                        <span class="footer__item-text">Facebook</span>
+                                    </a>
+                                </li>                           
+                            </ul>
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </footer>
+    </div>
+    <!-- ----SIGN UP -->
+    <div class="modal_signup js-modal_signup">
+        <div class="modal_container js_container-signup">
+            <header class="modal_header">SIGN UP</header>
+            <div class="modal_body">
+                <i class="fa-solid fa-envelope modal_sign-icon"></i>
+                <input type="text" placeholder="Email" id="signup_email" class="modal_input">
+                <i class="fa-solid fa-key modal_sign-icon"></i>
+                <input type="text" placeholder="Password" id="signup_password" class="modal_input">
+                <i class="fa-solid fa-key modal_sign-icon"></i>
+                <input type="text" placeholder="Confirm Password" id="signup_confirm-password" class="modal_input">
+                <button class="btn_signup">CREAT ACCOUNT</button>
+                <span class="modal_signup-text">Or sign up with social platforms</span>
+                <ul class="modal_signup-list">
+                    <li class="moal_signup-item">
+                        <i class="fa-brands fa-facebook"></i>
+                    </li>
+                    <li class="moal_signup-item">
+                        <i class="fa-brands fa-google"></i>
+                    </li>
+                    <li class="moal_signup-item">
+                        <i class="fa-brands fa-instagram"></i>
+                    </li>
+                    <li class="moal_signup-item">
+                        <i class="fa-brands fa-twitter"></i>
+                    </li>
+                </ul>
+            </div>
+        </div> 
+    </div>
+    <!-- SIGN IN -->
+    <div class="modal_signin js-modal_signin">
+        <div class="modal_container js_container-signin">
+            <header class="modal_header">SIGN IN</header>
+            <div class="modal_body">
+                <i class="fa-solid fa-envelope modal_sign-icon"></i>
+                <input type="text" placeholder="Email" id="signup_email" class="modal_input">
+                <i class="fa-solid fa-key modal_sign-icon"></i>
+                <input type="text" placeholder="Password" id="signup_password" class="modal_input">
+                <button class="btn_signup">LOGIN</button>
+                <span class="modal_forgot">Forgot password?</span>
+                <span class="modal_signup-text">Or sign up with social platforms</span>
+                <ul class="modal_signup-list">
+                    <li class="moal_signup-item">
+                        <i class="fa-brands fa-facebook"></i>
+                    </li>
+                    <li class="moal_signup-item">
+                        <i class="fa-brands fa-google"></i>
+                    </li>
+                    <li class="moal_signup-item">
+                        <i class="fa-brands fa-instagram"></i>
+                    </li>
+                    <li class="moal_signup-item">
+                        <i class="fa-brands fa-twitter"></i>
+                    </li>
+                </ul>
+            </div>
+        </div> 
+    </div>
+
+    <script src="./main.js"></script>
+    
+</body>
+</html>
