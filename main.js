@@ -231,7 +231,7 @@ userData.on('value', snap => {
         });
         myChart.update();
     };
-    setInterval(addData,5000);
+    setInterval(addData,30000);
 
     //==============================================================================================
 
