@@ -512,7 +512,7 @@
 
 .displays {
     height: 800px;
-    background: url(./img/bgr1.jpg);
+    background: floralwhite;
     border-radius: 5px;
 }
 .displays__header {
